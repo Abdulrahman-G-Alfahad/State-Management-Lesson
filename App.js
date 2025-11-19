@@ -13,24 +13,6 @@ import {
 } from "react-native";
 
 export default function App() {
-  // Task: Counter States (Number)
-
-  const [todos, setTodos] = useState([]);
-  const [todoInput, setTodoInput] = useState("");
-
-  const addTodo = () => {
-    if (todoInput.trim()) {
-      setTodos([...todos, { id: Date.now().toString(), text: todoInput }]);
-      setTodoInput("");
-    }
-  };
-
-  // Task: complete todo functionality
-
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
   return (
     <SafeAreaView style={[styles.safeArea]}>
       <ScrollView style={styles.scrollView}>
@@ -39,29 +21,6 @@ export default function App() {
 
           <View style={styles.section}>
             <Text style={[styles.sectionTitle]}>Todo List</Text>
-            <TextInput
-              style={styles.todoInput}
-              value={todoInput}
-              onChangeText={setTodoInput}
-              placeholder="Add a new todo"
-            />
-            <Button title="Add Todo" onPress={addTodo} color="#4ECDC4" />
-            <View style={styles.todoList}>
-              {todos.length === 0 ? (
-                <Text style={styles.emptyText}>No todos yet!</Text>
-              ) : (
-                todos.map((todo) => (
-                  <View key={todo.id} style={styles.todoItem}>
-                    <Text style={styles.todoText}>{todo.text}</Text>
-                    <TouchableOpacity onPress={() => deleteTodo(todo.id)}>
-                      {/* Task: complete todo functionality */}
-
-                      <Text style={styles.deleteButton}>×</Text>
-                    </TouchableOpacity>
-                  </View>
-                ))
-              )}
-            </View>
           </View>
 
           <StatusBar />
